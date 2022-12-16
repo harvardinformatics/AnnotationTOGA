@@ -14,7 +14,7 @@ source activate biopython
 ```
 From here, you can then run the script simply by supplying the species name and full path to the genome fasta as a command line argument:
 ```
-python WriteChromLengthBedFromFasta.py unicorn /PATH/TO/unicorn_v1_genome.fasta
+python WriteChromLengthBedFromFasta.py bigfoot /PATH/TO/bigfoot_v1_genome.fasta
 ```
 ## 2. Create CDS annotation bed file for the reference genome
 This CDS file is used by TOGA to only consider protein-coding genes and isoforms. This requires three steps. While we demonstrate how to create separate conda environments for the bioinformatics tool required for each step, in principle all tools can be installed to a common conda environment that you use for all three steps.
@@ -23,19 +23,32 @@ Create a conda environment for gffread and extract CDS entries
 ```
 conda create -n gffread -c bioconda gffread
 source activate gffread
-genome=unicorn_v1_genome.fasta
-gff3=unicorn_v1_genome_NCBI.gff3
-gffread $gff3 -g $genome -C -o unicorn_v1_genome_NCBI_CDSonly.gff3
+genome=human_genomic.fasta
+gff3=human.gff3
+gffread $gff3 -g $genome -C -o human_CDSonly.gff3
+source deactivate
 ```
 ### 2b. Convert CDS gff3 to GenePred format
 ```
 conda create -n gff3ToGenePred -c bioconda ucsc-gff3togenepred
 source activate gff3ToGenePred
-gff3ToGenePred unicorn_v1_genome_NCBI_CDSonly.gff3 unicorn_v1_genome_NCBI_CDSonly.GenePred
+gff3ToGenePred human_CDSonly.gff3 human_CDSonly.GenePred
+source deactivate
 ```
 ### 2c. Convert GenePred to bed
 ```
 conda create -n genePredToBed -c bioconda ucsc-genepredtobed
 source activate genePredToBed
-genePredToBed unicorn_v1_genome_NCBI_CDSonly.GenePred unicorn_v1_genome_NCBI_CDSonly.bed
-```   
+genePredToBed human_CDSonly.GenePred human_CDSonly.bed
+source deactivate
+``` 
+## 3. Create 2bit files for both genomes
+In our example, we will be lifting over annotations from a high quality human reference to bigfoot, presumably a reasonably close relative.
+```
+conda create -n faToTwoBit -c bioconda ucsc-fatotwobit
+source activate faToTwoBit
+faToTwoBit human_genomic.fasta human.2bit
+faToTwoBit bigfoot_v1_genome.fasta bigfoot.2bit
+source deactivate
+```
+
