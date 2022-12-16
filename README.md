@@ -26,21 +26,21 @@ source activate gffread
 genome=human_genomic.fasta
 gff3=human.gff3
 gffread $gff3 -g $genome -C -o human_CDSonly.gff3
-source deactivate
+conda deactivate
 ```
 ### 2b. Convert CDS gff3 to GenePred format
 ```
 conda create -n gff3ToGenePred -c bioconda ucsc-gff3togenepred
 source activate gff3ToGenePred
 gff3ToGenePred human_CDSonly.gff3 human_CDSonly.GenePred
-source deactivate
+conda deactivate
 ```
 ### 2c. Convert GenePred to bed
 ```
 conda create -n genePredToBed -c bioconda ucsc-genepredtobed
 source activate genePredToBed
 genePredToBed human_CDSonly.GenePred human_CDSonly.bed
-source deactivate
+conda deactivate
 ``` 
 ## 3. Create 2bit files for both genomes
 In our example, we will be lifting over annotations from a high quality human reference to bigfoot, presumably a reasonably close relative.
@@ -49,7 +49,7 @@ conda create -n faToTwoBit -c bioconda ucsc-fatotwobit
 source activate faToTwoBit
 faToTwoBit human_genomic.fasta human.2bit
 faToTwoBit bigfoot_v1_genome.fasta bigfoot.2bit
-source deactivate
+conda deactivate
 ```
 ## 4. Create CDS isoforms table for reference
 One has the option of providing isoform information to TOGA. If one doesn't, TOGA treats every isoform as a separate gene. To generate the isoform table, with gene in first column and isoform in the second, one can use a simple awk cmd:
@@ -72,4 +72,18 @@ targetgenome=$4 # target is the reference genome to which one is lifting
 pslout=$5
 
 singularity exec --cleanenv ${CACTUS_IMAGE} halLiftover --outPSL $halfile $sourcegenome $sourcebed $targetgenome $pslout 
+``` 
+## 6. Force alignments in psl file to positive strand
+This step is implemented with pslPosTarget, and can be run in a script, after creating the conda environment:
+```
+conda create -n pslPosTarget -c bioconda ucsc-pslpostarget
+```
+Then, run the script:
+```
+#!/bin/bash
+source activate pslPosTarget
+inpsl=$1
+outpsl=$2
+pslPosTarget $1 $2
+conda deactivate
 ``` 
