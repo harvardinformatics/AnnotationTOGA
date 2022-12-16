@@ -1,2 +1,6 @@
-# GenomeAnnotation-TOGA
-Guidelines for running TOGA and scripts for processing outputs
+# TOGA: exon-aware liftover
+In cases where there is a reasonably high-quality annotation for a species closely related to the genome you wish to annotate, transferring or "lifting over" gene models from that high quality annotation may be a useful approach. Such methods begin with a whole-genome alignment (WGA), which serves as the basis of mapping the genomic coordinates of the source annotation to analogous coordinates in the target genome, i.e. the one you wish to annotate. [TOGA](https://github.com/hillerlab/TOGA) is an exon-aware liftover approach that is also able to classify genes in the target species as orthologs, paralogs or processed pseudogenes. 
+
+In our TOGA workflow, we begin with a WGA created with Cactus, following our recommended best practice documented [here](https://github.com/harvardinformatics/GenomeAnnotation-WholeGenomeAlignment). Running TOGA requires that a genome with a high quality anotation is part of the WGA, and that a number of files be generated. A potentially confusing part of the workflow is naming conventions for the reference annotation species and the species to which annotations are being tranferred ... the confusion being that they vary among the tools in the workflow! Thus, we are explicit about what gets called what in various steps in the workflow.
+
+ 
