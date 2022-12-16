@@ -16,3 +16,26 @@ From here, you can then run the script simply by supplying the species name and 
 ```
 python WriteChromLengthBedFromFasta.py unicorn /PATH/TO/unicorn_v1_genome.fasta
 ```
+## 2. Create CDS annotation bed file for the reference genome
+This CDS file is used by TOGA to only consider protein-coding genes and isoforms. This requires three steps. While we demonstrate how to create separate conda environments for the bioinformatics tool required for each step, in principle all tools can be installed to a common conda environment that you use for all three steps.
+### 2a. Extract CDS-only gff3 with gffread
+Create a conda environment for gffread and extract CDS entries
+```
+conda create -n gffread -c bioconda gffread
+source activate gffread
+genome=unicorn_v1_genome.fasta
+gff3=unicorn_v1_genome_NCBI.gff3
+gffread $gff3 -g $genome -C -o unicorn_v1_genome_NCBI_CDSonly.gff3
+```
+### 2b. Convert CDS gff3 to GenePred format
+```
+conda create -n gff3ToGenePred -c bioconda ucsc-gff3togenepred
+source activate gff3ToGenePred
+gff3ToGenePred unicorn_v1_genome_NCBI_CDSonly.gff3 unicorn_v1_genome_NCBI_CDSonly.GenePred
+```
+### 2c. Convert GenePred to bed
+```
+conda create -n genePredToBed -c bioconda ucsc-genepredtobed
+source activate genePredToBed
+genePredToBed unicorn_v1_genome_NCBI_CDSonly.GenePred unicorn_v1_genome_NCBI_CDSonly.bed
+```   
