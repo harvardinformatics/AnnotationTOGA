@@ -101,8 +101,7 @@ pos_target_psl=$1
 target2bit=$2
 source2bit=$3
 chainout=$4
-axtChain -psl -verbose=0 -linearGap=medium $pos_target_psl $target2bit $source2bit $chainout
+axtChain -psl -verbose=0 -linearGap=loose $pos_target_psl $target2bit $source2bit $chainout
 conda deactivate
 ```
-An important command line argument to consider is *-linearGap*, which specifes the type of linear gap to use. Loose specifies chicken/human linear gap costs, i.e. for more distantly related species, while medium specfies mouse/human linear gap cost, i.e for species that are more closely related.
-
+The linearGap setting relates to penalties for gap opening and extension, with "loose" being preferred, as it leads to longer chains, with which TOGA performs better.
