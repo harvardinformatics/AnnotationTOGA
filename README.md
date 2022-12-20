@@ -87,7 +87,7 @@ outpsl=$2
 pslPosTarget $1 $2
 conda deactivate
 ``` 
-## 6. Create chain file
+## 7. Create chain file
 The final step before running TOGA is to create a chain file using axtChain. As with halLiftover, the "target" is the reference genome from which one wants ot transfer annotations to the "source", the genome to be annotated. Create a conda environment:
 ``` 
 conda create -n axtChain -c ucsc-axtchain axtChain
@@ -105,3 +105,38 @@ axtChain -psl -verbose=0 -linearGap=loose $pos_target_psl $target2bit $source2bi
 conda deactivate
 ```
 The linearGap setting relates to penalties for gap opening and extension, with "loose" being preferred, as it leads to longer chains, with which TOGA performs better.
+
+## 8. Run TOGA
+TOGA is built with python code. Furthermore, TOGA uses a Nextflow as a workflow management system that submits jobs to your HPC cluster and tracks their status, so you will need to make sure the Nextflow config files are formatted properly. It does not seem that TOGA can be run without HPC infrastructure. To setup the TOGA conda environment
+* clone the github repository so you all have all the relevant TOGA scripts and functions
+* build a clean python conda environment using the latest version TOGA was tested with (3.7.3), then
+* install the python modules TOGA requires following instructions on the [TOGA](https://github.com/hillerlab/TOGA) github repsitory, then
+* run the configure.sh script, and finally
+* test the install with run_test.sh 
+
+Noe that TOGA uses a Nextflow as a workflow management system that submits jobs to your HPC cluster and tracks their status, so you will need to make sure the Nextflow config files are formatted properly. It does not seem that TOGA can be run without HPC infrastructure. To build the conda environment, cd to your TOGA directory, then do:
+
+```
+conda create -n TOGA python=3.7.3
+source activate TOGA
+conda install -c bioconda nextflow
+python3 -m pip install -r requirements.txt --user
+# run configure script
+./configure.sh
+# once you have all the nextflow config files set up properly, run the test
+./run_test micro
+```
+Be sure to consult the TOGA github repository for further details regarding how to confirm the test was successful.
+
+Finally, to run TOGA, a script should be run that looks like this
+
+#!/bin/bash
+chainfile=$1
+targetCDSbed=$2 # remember, the target is the annotated reference genome from which annotations will be transferred to your query genome
+target2bit=$3
+query2bit=$4
+outname=$5
+target_isoforms=$6 # tsv file with CDS gene and transcript id as columns
+
+/n/home_rc/afreedman/software/TOGA/toga.py $chainfile $targetCDSbed $target2bit $query2bit --kt --pn $outname -i $targert_isoforms  --nc /PATH/TO/TOGA/NEXTFLOW_CONFIG_FILES_DIRECTORY --cb 10,100 --cjn 750 
+```
