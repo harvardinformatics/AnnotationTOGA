@@ -147,5 +147,5 @@ query2bit=$4
 outname=$5
 target_isoforms=$6 # tsv file with CDS gene and transcript id as columns
 
-/n/home_rc/afreedman/software/TOGA/toga.py $chainfile $targetCDSbed $target2bit $query2bit --kt --pn $outname -i $targert_isoforms  --nc /PATH/TO/TOGA/NEXTFLOW_CONFIG_FILES_DIRECTORY --cb 10,100 --cjn 750 
+/PATH/TO/TOGA/toga.py $chainfile $targetCDSbed $target2bit $query2bit --kt --pn $outname -i $targert_isoforms  --nc /PATH/TO/TOGA/NEXTFLOW_CONFIG_FILES_DIRECTORY --cb 10,100 --cjn 750 
 ```
