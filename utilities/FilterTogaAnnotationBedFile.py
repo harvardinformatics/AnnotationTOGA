@@ -15,7 +15,7 @@ if __name__=="__main__":
 
     no_ortho_counter = 0
     bedopen = open(opts.annotbed,'r')
-    bedout = open('filteredtest_%s' % opts.annotbed,'w')
+    bedout = open('filtered_%s' % opts.annotbed,'w')
     for line in bedopen:
         linelist = line.strip().split('\t')
         if linelist[3] in orthoset:
