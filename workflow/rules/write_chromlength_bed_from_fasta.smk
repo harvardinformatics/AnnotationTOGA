@@ -1,10 +1,11 @@
 rule write_chromlength_bed:
     input:
-        config["genomefasta"]
+        config['genomefasta']
     output:    
-        "chromosome_lengths.write_chromlength_bed
+        'chromosome_lengths.bed'
     conda:
-        "../envs/biopython.yaml"
+        '../envs/biopython.yaml'
+    threads: 1    
     script:
-        "../scripts/WriteChromLengthBedFromFasta.py
+        '../scripts/WriteChromLengthBedFromFasta.py'
     
