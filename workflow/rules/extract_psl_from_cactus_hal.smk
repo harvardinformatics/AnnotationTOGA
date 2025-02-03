@@ -2,7 +2,7 @@ rule extract_psl_from_cactus_hal:
     input:
         halfile=config['cactus_hal']
         query_genome=config['genome_fasta']
-        target_ref_genome=config['ref_genome']
+        target_ref_genome=config['ref_genome_fasta']
         chrom_lengths='chromosome_lengths.bed' 
     output:
         'genomequery2reftarget.psl'  

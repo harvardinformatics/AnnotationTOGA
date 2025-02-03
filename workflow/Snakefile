@@ -1,0 +1,20 @@
+from os.path import basename
+configfile: "config/config.yaml"
+
+rule all:
+    input:
+        'results/chromosome_lengths.bed',
+        'results/cdsonly_{}'.format(basename(config['ref_gff3'])),
+        'results/ref_cds_isoforms.tsv', 
+        'results/{}.genepred'.format(basename(config['ref_gff3']).split('.gff')[0]),
+        'results/{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0]),
+        'results/cds_{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0])
+    default_target: True
+
+
+include: 'rules/write_chromlength_bed_from_fasta.smk'
+include: 'rules/create_cdsonly_gff3.smk'
+include: 'rules/refgff3_to_genepred.smk'
+include: 'rules/refgenepred_to_bed.smk' 
+include: 'rules/create_cds_isoforms_table.smk'
+include: 'rules/create_cds_annotation_bed.smk' 

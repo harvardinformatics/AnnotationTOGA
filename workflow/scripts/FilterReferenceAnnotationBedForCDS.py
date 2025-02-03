@@ -6,7 +6,7 @@ for line in cdsisoforms:
     isolist.append(line.strip().split()[1])
 entrycount = 0
 bedin = open(sys.argv[2],'r')
-bedout= open('CDS_%s' % sys.argv[2],'w')
+bedout= open('cds_%s' % sys.argv[2],'w')
 for line in bedin:
     entrycount+=1
     if entrycount%10000 == 0:
