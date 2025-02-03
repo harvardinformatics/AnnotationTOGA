@@ -1,0 +1,18 @@
+executor: slurm
+use-conda: True
+jobs: 100
+latency-wait: 100
+retries: 0
+
+set-threads:
+    extract_psl_from_cactus_hal: 1
+
+set-resources:
+    extract_psl_from_cactus_hal:
+        nodes: 1
+        ntasks: 1
+        threads: 1
+        mem_mb: 10000
+        slurm_partition: "shared"
+        runtime: 960
+    
