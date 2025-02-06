@@ -1,0 +1,4 @@
+*.code-workspace
+*.snakemake*
+data/
+results/
