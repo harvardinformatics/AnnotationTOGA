@@ -8,7 +8,7 @@ rule all:
         'results/ref_cds_isoforms.tsv', 
         'results/{}.genepred'.format(basename(config['ref_gff3']).split('.gff')[0]),
         'results/{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0]),
-        'results/cds_{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0])
+        'results/cdsonly_{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0])
     default_target: True
 
 

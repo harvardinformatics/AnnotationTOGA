@@ -1,5 +1,4 @@
-ref_genome_fasta: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/headercleaned_GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.fna"
-ref_gff3: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/fixed_CDSonly_GCF_000001735.4_TAIR10.1_genomic.gff"
-genome_fasta: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/headercleaned_GCF_016746365.2_Prin_Dyak_Tai18E2_2.1_genomic.fna"
+ref_genome_fasta: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/headercleaned_GCF_000001735.4_TAIR10.1_genomic.fna"
+ref_gff3: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/GCF_000001735.4_TAIR10.1_genomic.gff"
+genome_fasta: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/headercleaned_GCF_000004255.2_v.1.0_genomic.fna"
 cactus_hal: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/4Rosids_2022.04.26.hal"
-#isoforms_table: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/dataathaliana_CDS_isoforms.tsv"

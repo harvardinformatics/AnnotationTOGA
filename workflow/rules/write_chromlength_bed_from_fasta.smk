@@ -8,6 +8,6 @@ rule write_chromlength_bed:
     conda:
         '../envs/biopython.yml'
     threads: 1    
-    script:
-        '../scripts/WriteChromLengthBedFromFasta.py'
+    shell:
+        'python workflow/scripts/WriteChromLengthBedFromFasta.py {input}'
     
