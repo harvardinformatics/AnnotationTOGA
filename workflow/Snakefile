@@ -8,7 +8,9 @@ rule all:
         'results/ref_cds_isoforms.tsv', 
         'results/{}.genepred'.format(basename(config['ref_gff3']).split('.gff')[0]),
         'results/{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0]),
-        'results/cdsonly_{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0])
+        'results/cdsonly_{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0]),
+        'results/{}.2bit'.format(basename(config['ref_genome_fasta']).split('.fa')[0]),
+        'results/{}.2bit'.format(basename(config['genome_fasta']).split('.fa')[0])
     default_target: True
 
 
@@ -17,4 +19,5 @@ include: 'rules/create_cdsonly_gff3.smk'
 include: 'rules/refgff3_to_genepred.smk'
 include: 'rules/refgenepred_to_bed.smk' 
 include: 'rules/create_cds_isoforms_table.smk'
-include: 'rules/create_cds_annotation_bed.smk' 
+include: 'rules/create_cds_annotation_bed.smk'
+include: 'rules/create_2bits_from_genomes.smk'

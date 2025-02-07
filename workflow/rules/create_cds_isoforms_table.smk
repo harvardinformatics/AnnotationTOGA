@@ -10,5 +10,6 @@ rule create_cds_isoforms_table:
         """
         awk -F"\t" '$3=="mRNA"{{print $9}}' {input} | \
         awk -F";" '{{print $2"\t"$1}}' |sed 's/\tID=/ /g' | \
+        sed 's/gene-//g' |sed 's/rna-//g' | \
         awk -F"=" '{{print $2}}' > {output}
         """ 
