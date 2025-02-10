@@ -2,7 +2,7 @@ localrules: write_chromlength_bed
 
 rule write_chromlength_bed:
     input:
-        config['ref_genome_fasta']
+        config['genome_fasta']
     output:    
         'results/chromosome_lengths.bed'
     conda:

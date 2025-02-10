@@ -2,3 +2,6 @@ ref_genome_fasta: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/Annotat
 ref_gff3: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/GCF_000001735.4_TAIR10.1_genomic.gff"
 genome_fasta: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/headercleaned_GCF_000004255.2_v.1.0_genomic.fna"
 cactus_hal: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/4Rosids_2022.04.26.hal"
+cactus_sif: "/n/holylfs05/LABS/informatics/Lab/toga_snakemake_test/AnnotationTOGA/data/cactus_v2.9.2.sif"
+ref_name: "athaliana"
+genome_name: "alyrata"

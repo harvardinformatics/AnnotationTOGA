@@ -1,17 +1,20 @@
 rule extract_psl_from_cactus_hal:
     input:
-        halfile=config['cactus_hal']
-        query_genome=config['genome_fasta']
-        target_ref_genome=config['ref_genome_fasta']
-        chrom_lengths='chromosome_lengths.bed' 
+        halfile=config['cactus_hal'],
+        chrom_lengths='results/chromosome_lengths.bed' 
     output:
-        'genomequery2reftarget.psl'  
-    container:
-        'docker://quay.io/comparative-genomics-toolkit/cactus:v2.2.0-gpu'
+        'results/genomequery2reftarget.psl'  
+    #container:
+        #'docker://quay.io/comparative-genomics-toolkit/cactus:v2.2.0-gpu'
+    params:
+        query_name=config['genome_name'],
+        target_ref_name=config['ref_name']
+    singularity:
+        config['cactus_sif']
     shell:
         """
-        halLiftover --outPSL {input.hal}  {input.query_genome} \
-        {input.chrom_lengths} ${target_ref_genome} {output} 
+        halLiftover --outPSL {input.halfile}  {params.query_name} \
+        {input.chrom_lengths} {params.target_ref_name} {output} 
         """
 
 
