@@ -7,7 +7,8 @@ rule run_toga:
         ref_2bit='results/{}.2bit'.format(basename(config['ref_genome_fasta']).split('.fa')[0]),
         genome_2bit='results/{}.2bit'.format(basename(config['genome_fasta']).split('.fa')[0]),
     output:
-        'results/toga_annotation/query_annotation.bed'
+        'results/toga_annotation/query_annotation.bed',
+        'results/toga_annotation/orthology_classification.tsv'
     conda:
         '../envs/toga.yml'
     params:
