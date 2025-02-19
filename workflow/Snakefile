@@ -3,23 +3,16 @@ configfile: "config/config.yaml"
 
 rule all:
     input:
-        'results/chromosome_lengths.bed',
-        'results/cdsonly_{}'.format(basename(config['ref_gff3'])),
-        'results/ref_cds_isoforms.tsv', 
-        'results/{}.genepred'.format(basename(config['ref_gff3']).split('.gff')[0]),
-        'results/{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0]),
-        'results/cdsonly_{}.bed'.format(basename(config['ref_gff3']).split('.gff')[0]),
-        'results/{}.2bit'.format(basename(config['ref_genome_fasta']).split('.fa')[0]),
-        'results/{}.2bit'.format(basename(config['genome_fasta']).split('.fa')[0]),
-        'results/genomequery2reftarget.psl'
+        'results/toga_annotation/query_annotation.bed'
     default_target: True
 
 
 include: 'rules/write_chromlength_bed_from_fasta.smk'
-include: 'rules/create_cdsonly_gff3.smk'
 include: 'rules/refgff3_to_genepred.smk'
 include: 'rules/refgenepred_to_bed.smk' 
-include: 'rules/create_cds_isoforms_table.smk'
 include: 'rules/create_cds_annotation_bed.smk'
 include: 'rules/create_2bits_from_genomes.smk'
 include: 'rules/extract_psl_from_cactus_hal.smk'
+include: 'rules/psl_to_positive_strand.smk' 
+include: 'rules/create_chain_file.smk'
+include: 'rules/run_toga.smk'

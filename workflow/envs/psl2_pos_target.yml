@@ -1,0 +1,7 @@
+channels:
+    - bioconda
+    - conda-forge
+    - defaults
+
+dependencies:
+    - ucsc-pslpostarget==469    
