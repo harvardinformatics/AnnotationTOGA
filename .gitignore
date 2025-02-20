@@ -2,3 +2,6 @@
 *.snakemake*
 data/
 results/
+trash/
+*sif
+TOGA/
