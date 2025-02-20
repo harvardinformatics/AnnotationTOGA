@@ -11,6 +11,6 @@ rule filtered_togabed_to_gtf:
     shell:
         """
         bedToGenePred {input} results/toga_annotation/filtered_query_annotation.genepred
-        genePredToGtf filtered_query_annotation.genepred {output}
+        genePredToGtf file results/toga_annotation/filtered_query_annotation.genepred {output}
         """
               

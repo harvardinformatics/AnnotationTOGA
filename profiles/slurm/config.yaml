@@ -12,14 +12,14 @@ set-resources:
         nodes: 1
         ntasks: 1
         mem_mb: 10000
-        slurm_account: "informatics"
-        slurm_partition: "shared"
+        slurm_account: ""
+        slurm_partition: ""
         runtime: 960
     create_chain_file:
         nodes: 1
         ntasks: 1
         mem_mb: 15000 
-        slurm_account: "informatics"
-        slurm_partition: "shared"
+        slurm_account: ""
+        slurm_partition: ""
         runtime: 300       
     
