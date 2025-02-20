@@ -1,0 +1,21 @@
+from os.path import basename
+configfile: "config/config.yaml"
+rule all:
+    input:
+        'results/toga_annotation/geneIDupdate_filtered_query_annotation.gff3'
+    default_target: True
+
+
+include: 'rules/write_chromlength_bed_from_fasta.smk'
+include: 'rules/refgff3_to_genepred.smk'
+include: 'rules/refgenepred_to_bed.smk' 
+include: 'rules/create_cds_annotation_bed.smk'
+include: 'rules/create_2bits_from_genomes.smk'
+include: 'rules/extract_psl_from_cactus_hal.smk'
+include: 'rules/psl_to_positive_strand.smk' 
+include: 'rules/create_chain_file.smk'
+include: 'rules/run_toga.smk'
+include: 'rules/orthology_filter_annotation_bed.smk'
+include: 'rules/filtered_togabed_to_gtf.smk'
+include: 'rules/filtered_gtf_to_gff3.smk'
+include: 'rules/add_gene_features_to_toga_gff3.smk'

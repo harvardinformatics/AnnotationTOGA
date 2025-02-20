@@ -1,0 +1,7 @@
+*.code-workspace
+*.snakemake*
+data/
+results/
+trash/
+*sif
+TOGA/

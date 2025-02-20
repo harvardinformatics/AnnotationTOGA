@@ -1,19 +1,17 @@
 import sys
+from os.path import basename
 cdsisoforms = open(sys.argv[1],'r') # tab-sep table, col1 = gene, col2=isoform id
-cdsisoforms.readline()
+#cdsisoforms.readline()
 isolist = []
 for line in cdsisoforms:
-    isolist.append(line.strip().split()[1])
-entrycount = 0
+    gene,isoform = line.strip().split()
+    isolist.append(isoform)
+
 bedin = open(sys.argv[2],'r')
-bedout= open('CDS_%s' % sys.argv[2],'w')
+bedout= open('results/cdsonly_{}'.format(basename(sys.argv[2])),'w')
 for line in bedin:
-    entrycount+=1
-    if entrycount%10000 == 0:
-        print('processing transcript %s\n' % entrycount)
     linelist = line.strip().split('\t')
     if linelist[3] in isolist:
         bedout.write(line)
-
 
 bedout.close()
