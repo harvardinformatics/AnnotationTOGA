@@ -1,5 +1,4 @@
 executor: slurm
-use-conda: True
 use-singularity: True
 singularity-args: "--cleanenvi"
 
