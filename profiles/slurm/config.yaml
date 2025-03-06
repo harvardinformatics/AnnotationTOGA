@@ -1,6 +1,6 @@
 executor: slurm
 use-singularity: True
-singularity-args: "--cleanenvi"
+singularity-args: "--cleanenv"
 
 set-threads:
     extract_psl_from_cactus_hal: 1
