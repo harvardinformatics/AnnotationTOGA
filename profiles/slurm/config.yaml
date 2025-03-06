@@ -1,8 +1,7 @@
 executor: slurm
 use-conda: True
-jobs: 100
-latency-wait: 100
-retries: 0
+use-singularity: True
+singularity-args: "--cleanenvi"
 
 set-threads:
     extract_psl_from_cactus_hal: 1
