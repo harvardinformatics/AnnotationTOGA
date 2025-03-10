@@ -24,12 +24,6 @@ You will also need to clone the TOGA repository from [here](https://github.com/h
 ```bash
 git clone git@github.com:hillerlab/TOGA.git
 ```
-Finally, you will need a singularity container for cactus, as one of the cactus utilities is used in the workflow. You will need singularity installed where you plan on running your workflow. If it is not, you can install it into your *snakemake_py311* environment:
-```bash
-mamba activate snakemake_py311
-mamba install conda-forge::singularity
-mamba deactivate
-```
 
 The following command can be run from inside *snakemake_py311* or outside of it, depending upon whether singularity is already installed globally:
 ```bash

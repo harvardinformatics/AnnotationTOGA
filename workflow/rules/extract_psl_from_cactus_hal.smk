@@ -10,7 +10,7 @@ rule extract_psl_from_cactus_hal:
         query_name=config['genome_name'],
         target_ref_name=config['ref_name']
     singularity:
-        config['cactus_sif']
+        "docker://quay.io/comparative-genomics-toolkit/cactus:v2.9.3"
     shell:
         """
         halLiftover --outPSL {input.halfile}  {params.query_name} \
